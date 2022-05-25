@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo/Models/Todo.dart';
+import 'package:todo/Provider/TodoProvider.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/utils.dart';
 
 class TodoWidget extends StatelessWidget {
 
@@ -35,7 +38,7 @@ class TodoWidget extends StatelessWidget {
             children: [
               SlidableAction(
                 backgroundColor: Colors.red,
-                onPressed: (_) {},
+                onPressed: (context) => deleteTodo(context, todo) ,
                 label: 'Delete',
                 icon: Icons.delete,
               ),
@@ -86,5 +89,12 @@ class TodoWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void deleteTodo(BuildContext context, Todo todo) {
+    final provider = Provider.of<TodoProvider>(context, listen: false);
+    provider.removeTodo(todo);
+
+    Utils.showSnackBar(context, 'Deleted the task');
   }
 }
