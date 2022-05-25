@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:todo/Models/Todo.dart';
 
 class TodoProvider extends ChangeNotifier {
-  List<Todo> _todos = [
+  final List<Todo> _todos = [
     Todo(
       createdTime: DateTime.now(),
       title: 'Buy Food',
       description: '''
-      -Eggs
+      - Eggs
       - Milk
       - Bread ''',
       id: '0',
@@ -56,5 +56,12 @@ class TodoProvider extends ChangeNotifier {
     notifyListeners();
 
     return todo.isDone;
+  }
+
+  void updateTodo(Todo todo, String title, String description) {
+    todo.title = title;
+    todo.description = description;
+
+    notifyListeners();
   }
 }
