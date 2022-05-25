@@ -4,14 +4,14 @@ import 'package:todo/Models/Todo.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/Provider/TodoProvider.dart';
 
-class AddTodoWidget extends StatefulWidget {
-  const AddTodoWidget({Key? key}) : super(key: key);
+class AddTodoDialog extends StatefulWidget {
+  const AddTodoDialog({Key? key}) : super(key: key);
 
   @override
-  State<AddTodoWidget> createState() => _AddTodoWidgetState();
+  State<AddTodoDialog> createState() => _AddTodoDialogState();
 }
 
-class _AddTodoWidgetState extends State<AddTodoWidget> {
+class _AddTodoDialogState extends State<AddTodoDialog> {
 
   final _formKey = GlobalKey<FormState>();
   String title = '';

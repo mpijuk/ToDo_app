@@ -5,11 +5,11 @@ import 'package:todo/Provider/TodoProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/utils.dart';
 
-class TodoWidget extends StatelessWidget {
+class TodoTask extends StatelessWidget {
 
   final Todo todo;
 
-  const TodoWidget({
+  const TodoTask({
     required this.todo,
     Key? key,
   }) : super(key: key);
@@ -60,7 +60,14 @@ class TodoWidget extends StatelessWidget {
             activeColor: Theme.of(context).primaryColor,
             checkColor: Colors.white,
             value: todo.isDone,
-            onChanged: (_) {},
+            onChanged: (_) {
+              final provider = Provider.of<TodoProvider>(context, listen: false);
+              final isCompleted = provider.toggleTodoStatus(todo);
+              
+              Utils.showSnackBar(context,
+                isCompleted ? 'Task completed' : 'Task marked incomplete'
+              );
+            },
           ),
           SizedBox(width: 20),
           Expanded(
