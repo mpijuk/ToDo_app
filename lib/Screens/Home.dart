@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo/CustomWidgets/TodoList.dart';
 import 'package:todo/main.dart';
 import 'package:todo/CustomWidgets/AddTodoDialog.dart';
+import 'package:todo/CustomWidgets/CompletedTodoList.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,8 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
 
     final tabs = [
-      TodoListWidget(),
-      Container(),
+      TodoList(),
+      CompletedTodoList(),
     ];
 
     return Scaffold(
@@ -61,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.black,
         onPressed: () => showDialog(
           context: context,
-          builder: (BuildContext context) => AddTodoWidget(),
+          builder: (BuildContext context) => AddTodoDialog(),
           barrierDismissible: true,
         ),
       ),

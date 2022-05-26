@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/CustomWidgets/TodoTask.dart';
-import 'package:todo/Provider/TodoTasks.dart';
+import 'package:todo/Provider/TodoProvider.dart';
 import 'package:todo/Models/Todo.dart';
 
-class TodoListWidget extends StatelessWidget {
-  const TodoListWidget({Key? key}) : super(key: key);
+class TodoList extends StatelessWidget {
+  const TodoList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class TodoListWidget extends StatelessWidget {
             itemCount: allTasks.length,
             itemBuilder: (context, index) {
               final todo = allTasks[index];
-              return TodoWidget(todo: todo);
+              return TodoTask(todo: todo);
             },
         );
   }
