@@ -12,7 +12,7 @@ class CompletedTodoList extends StatelessWidget {
     final allTasks = provider.todosCompleted;
 
     return allTasks.isEmpty
-        ? Center(
+        ? const Center(
       child: Text(
         'No completed tasks.',
         style: TextStyle(fontSize: 20),
