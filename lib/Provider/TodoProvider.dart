@@ -1,7 +1,8 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/API/FirebaseApi.dart';
 import 'package:todo/Models/Todo.dart';
+import 'package:todo/Models/CustomUser.dart';
+import 'package:provider/provider.dart';
 
 class TodoProvider extends ChangeNotifier {
   List<Todo> _todos = [];

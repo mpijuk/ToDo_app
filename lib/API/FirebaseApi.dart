@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:todo/Models/Todo.dart';
-import 'package:todo/utils.dart';
+import 'package:todo/Shared/Utils.dart';
 
 class FirebaseApi {
 
   static Future<String> createTodo(Todo todo) async {
     final docTodo = FirebaseFirestore.instance.collection('todo').doc();
 
-    todo.id = docTodo.id;
+    todo.taskID = docTodo.id;
     await docTodo.set(todo.toJson());
 
     return docTodo.id;
@@ -20,13 +20,13 @@ class FirebaseApi {
       .transform(Utils.transformer(Todo.fromJson));
 
   static Future updateTodo(Todo todo) async {
-    final docTodo = FirebaseFirestore.instance.collection('todo').doc(todo.id);
+    final docTodo = FirebaseFirestore.instance.collection('todo').doc(todo.taskID);
 
     await docTodo.update(todo.toJson());
   }
 
   static Future deleteTodo(Todo todo) async {
-    final docTodo = FirebaseFirestore.instance.collection('todo').doc(todo.id);
+    final docTodo = FirebaseFirestore.instance.collection('todo').doc(todo.taskID);
 
     await docTodo.delete();
   }

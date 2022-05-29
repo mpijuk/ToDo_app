@@ -3,8 +3,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo/Models/Todo.dart';
 import 'package:todo/Provider/TodoProvider.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/Screens/EditTodoScreen.dart';
-import 'package:todo/utils.dart';
+import 'package:todo/Screens/Home/EditTodoScreen.dart';
+import 'package:todo/Shared/Utils.dart';
 
 class TodoTask extends StatelessWidget {
 
@@ -21,7 +21,7 @@ class TodoTask extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: Slidable(
-        key: Key(todo.id),
+        key: Key(todo.taskID),
         startActionPane: ActionPane(
           motion: const DrawerMotion(),
           children: [

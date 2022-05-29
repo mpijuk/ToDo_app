@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/CustomWidgets/TodoTask.dart';
 import 'package:todo/Provider/TodoProvider.dart';
+import 'package:todo/Models/CustomUser.dart';
 
 class TodoList extends StatelessWidget {
   const TodoList({Key? key}) : super(key: key);

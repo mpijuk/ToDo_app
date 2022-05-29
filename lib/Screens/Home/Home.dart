@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo/API/Authentication.dart';
 import 'package:todo/API/FirebaseApi.dart';
 import 'package:todo/Provider/TodoProvider.dart';
 import 'package:todo/main.dart';
@@ -7,6 +8,7 @@ import 'package:todo/CustomWidgets/AddTodoDialog.dart';
 import 'package:todo/CustomWidgets/CompletedTodoList.dart';
 import 'package:todo/CustomWidgets/TodoList.dart';
 import 'package:todo/Models/Todo.dart';
+import 'package:todo/Models/CustomUser.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,10 +19,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
+  final Authentication _auth = Authentication();
   int selected = 0;
 
   @override
   Widget build(BuildContext context) {
+
+    final user = Provider.of<CustomUser?>(context);
 
     final tabs = [
       TodoList(),
@@ -34,9 +39,22 @@ class _HomeScreenState extends State<HomeScreen> {
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 25,
+              color: Colors.black,
             ),
         ),
         elevation: 0,
+        actions: [
+          TextButton.icon(
+            icon: const Icon(Icons.person),
+            label: const Text('logout'),
+            onPressed: () async {
+              await _auth.signOut();
+            },
+            style: TextButton.styleFrom(
+              primary: Colors.black,
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -68,8 +86,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 return const Center(child: Text('Something went wrong, try later'));
               } else {
                 final todos = snapshot.data;
+                final showTodos = todos!.where((todo) => todo.userID == user!.uid).toList();
+
                 final provider = Provider.of<TodoProvider>(context);
-                provider.setTodos(todos!);
+                provider.setTodos(showTodos);
 
                 return tabs[selected];
               }

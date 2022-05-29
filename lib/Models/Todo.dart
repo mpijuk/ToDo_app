@@ -1,4 +1,4 @@
-import 'package:todo/utils.dart';
+import 'package:todo/Shared/Utils.dart';
 
 class TodoField {
   static const createdTime = 'createdTime';
@@ -7,7 +7,8 @@ class TodoField {
 class Todo {
   DateTime createdTime;
   String title;
-  String id;
+  String taskID;
+  String userID;
   String description;
   bool isDone;
 
@@ -15,7 +16,8 @@ class Todo {
     required this.createdTime,
     required this.title,
     this.description = '',
-    required this.id,
+    required this.taskID,
+    required this.userID,
     this.isDone = false,
   });
 
@@ -23,7 +25,8 @@ class Todo {
     createdTime: Utils.toDateTime(json['createdTime']),
     title: json['title'],
     description: json['description'],
-    id: json['id'],
+    taskID: json['taskID'],
+    userID: json['userID'],
     isDone: json['isDone'],
   );
 
@@ -31,7 +34,8 @@ class Todo {
     'createdTime': Utils.fromDateTimeToJson(createdTime),
     'title': title,
     'description': description,
-    'id': id,
+    'taskID': taskID,
+    'userID': userID,
     'isDone': isDone,
   };
 

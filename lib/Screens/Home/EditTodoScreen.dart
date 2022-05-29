@@ -36,21 +36,30 @@ class _EditTodoScreenState extends State<EditTodoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Todo'),
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
+        title: const Text('Edit Todo',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         actions: [
           IconButton(
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
             onPressed: () {
               final provider = Provider.of<TodoProvider>(context, listen: false);
               provider.removeTodo(widget.todo);
 
               Navigator.of(context).pop();
             },
+            color: Colors.black,
           ),
         ]
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Form(
           key: _formKey,
           child: TodoForm(

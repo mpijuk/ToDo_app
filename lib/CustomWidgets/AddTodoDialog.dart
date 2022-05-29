@@ -3,6 +3,7 @@ import 'package:todo/CustomWidgets/TodoForm.dart';
 import 'package:todo/Models/Todo.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/Provider/TodoProvider.dart';
+import 'package:todo/Models/CustomUser.dart';
 
 class AddTodoDialog extends StatefulWidget {
   const AddTodoDialog({Key? key}) : super(key: key);
@@ -19,6 +20,9 @@ class _AddTodoDialogState extends State<AddTodoDialog> {
 
   @override
   Widget build(BuildContext context) {
+
+    //final user = Provider.of<CustomUser?>(context, listen: false);
+
     return AlertDialog(
       content: Form(
         key: _formKey,
@@ -50,8 +54,11 @@ class _AddTodoDialogState extends State<AddTodoDialog> {
     if(!isValid) {
       return;
     } else {
+      final user = Provider.of<CustomUser?>(context, listen: false);
+
       final todo = Todo(
-        id: DateTime.now().toString(),
+        taskID: DateTime.now().toString(),
+        userID: user!.uid,
         title: title,
         description: description,
         createdTime: DateTime.now(),
