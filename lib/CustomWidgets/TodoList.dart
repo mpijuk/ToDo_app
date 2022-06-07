@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/CustomWidgets/TodoTask.dart';
 import 'package:todo/Provider/TodoProvider.dart';
-import 'package:todo/Models/Todo.dart';
+import 'package:todo/Models/CustomUser.dart';
 
 class TodoList extends StatelessWidget {
   const TodoList({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class TodoList extends StatelessWidget {
     final allTasks = provider.todos;
 
     return allTasks.isEmpty
-        ? Center(
+        ? const Center(
             child: Text(
               'No todos.',
               style: TextStyle(fontSize: 20),
